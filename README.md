@@ -13,7 +13,7 @@ conda activate edo_mle
 
 The first time it's run, `run.sh` will initialize the airflow environment (and SQLite database) in the `./airflow_storage` folder.
 
-You can then log into the airflow UI at [http://localhost:8080]
+You can then log into the airflow UI at [http://localhost:8080] as admin/admin.
 
 # Forcing everything to reset
 If you delete `./airflow_storage`, rerunning `run.sh` will re-initialize airflow completely
