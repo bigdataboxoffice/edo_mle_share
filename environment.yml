@@ -1,0 +1,17 @@
+name: edo_mle
+channels:
+  - default
+  - conda-forge
+dependencies:
+  - python=3.9
+  #
+  - airflow
+  - jupyter
+  - pandas
+  - pendulum
+  - pip
+  - pylint
+  - scikit-learn
+  - pip:
+    - -e ./
+    - shed
