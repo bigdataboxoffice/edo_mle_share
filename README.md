@@ -11,23 +11,24 @@ conda activate edo_mle
 ./run.sh
 ```
 
-The first time it's run, `run.sh` will initialize the airflow environment (and SQLite database) in the `./airflow_storage` folder.
+The first time it's run, `run.sh` will initialize the airflow environment (and SQLite database) in the `./airflow` folder.
+
+`run.sh` runs airflow in standalone mode after setting various environment variables. Once it's started, the `model1` dag should appear in http://localhost:8080/home and you should be able to run it.
 
 
-In another shell, start the airflow webserver
 
-```sh
-# NOTE: must run this in the git repo root, or adjust AIRFLOW_HOME to point to the absolute path of ./airflow_storage
-AIRFLOW_HOME="$(pwd)/airflow_storage" airflow scheduler
+After you've run `run.sh` at least once to initialize sqlite, you can exit it (ctrl-c in the terminal it's running) and run `model1` in debug mode using
+
+```
+# be sure you're running in the edo_mle conda environment
+./debug.sh
 ```
 
-You can then log into the airflow UI at http://localhost:8080 as admin/admin.
-
 # Forcing everything to reset
-If you delete `./airflow_storage`, rerunning `run.sh` will re-initialize airflow completely
+If you delete `./airflow/airflow.db`, rerunning `run.sh` will re-initialize airflow completely
 
 ```sh
-rm -r ./airflow_storage/
+rm ./airflow/airflow.db
 ./run.sh
 ```
 

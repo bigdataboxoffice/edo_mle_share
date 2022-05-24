@@ -6,7 +6,6 @@ import numpy.typing as npt
 import pandas as pd
 
 
-@cache
 def get_iris() -> pd.DataFrame:
     csv_url = "https://archive.ics.uci.edu/ml/machine-learning-databases/iris/iris.data"
     cols = {

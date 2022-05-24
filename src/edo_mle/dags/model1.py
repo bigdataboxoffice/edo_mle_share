@@ -25,8 +25,11 @@ def model1():
 
     @task(multiple_outputs=False)
     def load_data():
+        log.info("starting download")
         iris = data.get_iris()
+        log.info("saving file")
         data_path = files.save(iris, name="iris")
+        log.info("done")
         return data_path
 
     @task(multiple_outputs=False)
@@ -47,10 +50,12 @@ def model1():
             from sklearn.linear_model import LogisticRegression
             from sklearn.metrics import roc_auc_score
 
+            log.info("loading data")
             iris = files.load(iris_path)
             xy = data.xy_species(iris)
             splits = data.extract_splits(xy, n_cv_splits, all_splits[fold])
 
+            log.info("fitting model")
             model = LogisticRegression(
                 multi_class="multinomial",
                 penalty="l2",
@@ -61,7 +66,9 @@ def model1():
             train_x, train_y = splits["train"]
             test_x, test_y = splits["test"]
             model.fit(train_x, train_y)
+            log.info("making predictions")
             test_y_pred = model.predict_proba(test_x)
+            log.info("evaluating model")
             score = roc_auc_score(test_y, test_y_pred, multi_class="ovo")
             return score
 
@@ -79,14 +86,13 @@ def model1():
 model1_dag = model1()
 
 if __name__ == "__main__":
-    pass
-
     pprint("creating dag")
     try:
         model1_dag.clear()
     except ValueError:
         pass
     pprint("running dag")
-    model1_dag.run(start_date=pendulum.today())
+    start_date = pendulum.today()
+    model1_dag.run(start_date=start_date)
     pprint("dag completed")
     model1_dag
