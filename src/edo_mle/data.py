@@ -1,4 +1,3 @@
-from functools import cache
 from typing import Dict, Set, Tuple, TypeVar
 
 import numpy as np

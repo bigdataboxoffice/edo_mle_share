@@ -3,8 +3,8 @@ from pprint import pprint
 
 import numpy as np
 import pendulum
-from airflow.decorators import dag, task
 
+from airflow.decorators import dag, task
 from edo_mle import data, files
 
 log = logging.getLogger(__name__)

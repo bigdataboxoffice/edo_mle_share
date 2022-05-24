@@ -20,7 +20,6 @@ import os
 
 from airflow.www.fab_security.manager import AUTH_DB
 
-
 basedir = os.path.abspath(os.path.dirname(__file__))
 
 # Flask-WTF flag for CSRF
@@ -42,7 +41,7 @@ WTF_CSRF_ENABLED = True
 AUTH_TYPE = AUTH_DB
 
 # Uncomment to setup Full admin role name
-AUTH_ROLE_ADMIN = 'Admin'
+AUTH_ROLE_ADMIN = "Admin"
 
 # Enable access without authentication
-AUTH_ROLE_PUBLIC = 'Admin'
+AUTH_ROLE_PUBLIC = "Admin"
